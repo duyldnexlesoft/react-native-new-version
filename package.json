@@ -11,14 +11,14 @@
     "test": "jest --watchAll",
     "lint": "expo lint",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "eas:ios": "eas build --profile development-simulator --platform ios"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
-    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@reduxjs/toolkit": "^2.5.1",
@@ -50,7 +50,8 @@
     "react-native-webview": "13.12.5",
     "react-query": "^3.39.3",
     "react-redux": "^9.2.0",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "@react-native-async-storage/async-storage": "1.23.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -64,5 +65,17 @@
     "react-test-renderer": "18.3.1",
     "typescript": "^5.3.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "@hookform/resolvers",
+          "moment",
+          "yup"
+        ],
+        "listUnknownPackages": false
+      }
+    }
+  }
 }

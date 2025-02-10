@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import {get, post} from 'app/utils/baseApi';
-import {CLIENT_ID, PACKET_ID} from '@env';
+// import {CLIENT_ID, PACKET_ID} from '@env';
 
 export const render = () => {
-  return get(`https://api.toughclicks.com/api/v1/client/${CLIENT_ID}/packet/${PACKET_ID}`);
+  return get(`https://api.toughclicks.com/api/v1/client/${process.env.CLIENT_ID}/packet/${process.env.PACKET_ID}`);
 };
 export const createAcceptance = (payload: any) => {
   const body = {
@@ -16,7 +16,7 @@ export const createAcceptance = (payload: any) => {
     signerEmailAddress: '',
     dynamicData: null,
   };
-  return post(`https://api.toughclicks.com/api/v1/client/${CLIENT_ID}/accept`, body);
+  return post(`https://api.toughclicks.com/api/v1/client/${process.env.CLIENT_ID}/accept`, body);
 };
 
 export default {}
