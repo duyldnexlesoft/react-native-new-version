@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { View, Text, Button } from "react-native";
 import { userSelector } from "app/store/selectors";
 import { useNavigation } from "expo-router";
+import LogoSvg from 'assets/svg/logo.svg';
 import { useEffect } from "react";
 
 export default function Signin() {
@@ -14,6 +15,7 @@ export default function Signin() {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <LogoSvg />
       <Text style={{ fontSize: 24 }}>Signin</Text>
     </View>
   );
