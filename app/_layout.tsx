@@ -1,50 +1,25 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
 import { Provider } from "react-redux";
-import store from "./store/store";
-import "react-native-reanimated";
+import store from "app/store/store";
+import { Stack } from "expo-router";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
+import Reactotron from "reactotron-react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../global.css";
 
-// import { useColorScheme } from "@/hooks/useColorScheme";
-import AppNavigator from "app/navigation/AppNavigator";
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+if (process.env.NODE_ENV === "development") {
+  Reactotron.setAsyncStorageHandler(AsyncStorage)
+    .configure({name: "React Native"})
+    .useReactNative()
+    .connect();
+}
 
 export default function RootLayout() {
-  // const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
     <Provider store={store}>
-      <AppNavigator />
-      {/* <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider> */}
+      <QueryClientProvider client={queryClient}>
+        <Stack screenOptions={{ headerShown: false }} />
+      </QueryClientProvider>
     </Provider>
   );
 }

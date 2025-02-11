@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CURRENT_USER} from '../../utils/constants';
 
 const initialState = {
-  currentUser: null,
+  currentUser: {},
   sherpa: null,
 };
 
