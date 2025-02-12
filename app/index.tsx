@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { Link, Redirect, router } from "expo-router";
 import { useEffect } from "react";
-import { SIGN_IN } from "app/constants/router";
+import { SIGN_IN } from "app/utils/router";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "./store/selectors";
 import AsyncStorage from "@react-native-async-storage/async-storage";

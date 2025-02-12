@@ -7,6 +7,7 @@ import Reactotron from "reactotron-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Sentry from "@sentry/react-native";
 import "../global.css";
+import "locales/i18next";
 import { useEffect } from "react";
 import ErrorBoundary from "./errors/ErrorBoundary";
 
