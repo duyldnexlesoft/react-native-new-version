@@ -8,9 +8,11 @@ import ProfileIcon from 'assets/svg/profile.svg';
 // import ROUTER from 'app/navigation/router';
 import {useSelector} from 'react-redux';
 import {userSelector} from 'app/store/selectors';
+import { router } from 'expo-router';
+import { AVAILABILITY, BANK, BOOKINGS, FORGOT_PASSWORD, PROFILE_MENU, SERVICES, SIGN_UP } from 'app/utils/router';
 
-const NavItem = ({focused, navigation, router, name, Icon}: any) => (
-  <Pressable className="flex-1 items-center" onPress={() => navigation.navigate(router)}>
+const NavItem = ({focused, navigation, routerLink, name, Icon}: any) => (
+  <Pressable className="flex-1 items-center" onPress={() => router.navigate(routerLink)}>
     <Icon className={focused === router ? 'text-secondary' : 'text-brown'} height={24} />
     <Text className={`text-xs pt-2 ${focused === router ? 'text-secondary' : 'text-brown'}`}>{name}</Text>
   </Pressable>
@@ -21,11 +23,11 @@ const NavBar = (props: any) => {
   return (
     <View className="w-full rounded-t-[20px] bg-white border border-white pt-4" style={styles.shadowBox}>
       <SafeAreaView className="flex-row justify-between pb-2 mb-2">
-        {/* {currentUser?.StripeBankId  && <NavItem {...props} router={ROUTER.SERVICES} name="Services" Icon={RunmanIcon} />}
-        <NavItem {...props} router={ROUTER.BOOKINGS} name="Bookings" Icon={CartIcon} />
-        <NavItem {...props} router={ROUTER.AVAILABILITY} name="Availability" Icon={AvailabilityIcon} />
-        <NavItem {...props} router={ROUTER.BANK} name="Bank" Icon={CardIcon} />
-        <NavItem {...props} router={ROUTER.PROFILE} name="Profile" Icon={ProfileIcon} /> */}
+        {currentUser?.StripeBankId  && <NavItem {...props} router={SERVICES} name="Services" Icon={RunmanIcon} />}
+        <NavItem {...props} router={BOOKINGS} name="Bookings" Icon={CartIcon} />
+        <NavItem {...props} router={AVAILABILITY} name="Availability" Icon={AvailabilityIcon} />
+        <NavItem {...props} router={BANK} name="Bank" Icon={CardIcon} />
+        <NavItem {...props} router={PROFILE_MENU} name="Profile" Icon={ProfileIcon} />
       </SafeAreaView>
     </View>
   );

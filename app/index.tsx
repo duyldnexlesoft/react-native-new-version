@@ -32,11 +32,6 @@ export default function HomeScreen(props: any) {
   if (isLoading && !currentUser) {
     return <View />;
   }
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     router.replace(SIGN_IN);
-  //   }, );
-  // }, []);
 
   return <Redirect href={currentUser ? SIGN_IN : SIGN_IN} />;
 }

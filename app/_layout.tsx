@@ -16,9 +16,9 @@ import { StripeProvider } from '@stripe/stripe-react-native';
 let deviceHeight = Dimensions.get('screen').height;
 let windowHeight = Dimensions.get('window').height;
 
-if (process.env.SENTRY_DSN) {
+if (process.env.EXPO_PUBLIC_SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
     tracesSampleRate: 1.0,
     enableAppHangTracking: false,
   });
@@ -45,7 +45,7 @@ export default function RootLayout() {
           }}
         >
           <ErrorBoundary>
-            <StripeProvider publishableKey={process.env.STRIPE_PUBLISHABLE_KEY}>
+            <StripeProvider publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY}>
               <Stack screenOptions={{ headerShown: false }} />
             </StripeProvider>
           </ErrorBoundary>
