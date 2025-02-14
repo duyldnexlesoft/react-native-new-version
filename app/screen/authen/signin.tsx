@@ -16,8 +16,13 @@ import BasicLayout from 'app/layout/BasicLayout';
 import Text from 'app/components/Text';
 import Alert from 'app/components/Alert';
 import { FORGOT_PASSWORD, SIGN_UP } from 'app/utils/router';
+import tailwindConfig from 'tailwind.config';
+import { create } from 'twrnc';
+import { router } from 'expo-router';
 
-const SignIn = ({navigation}: any) => {
+const SignIn = () => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   const {t} = useTranslation();
   const queryClient = useQueryClient();
   const passwordInputRef: any = useRef(null);
@@ -43,7 +48,6 @@ const SignIn = ({navigation}: any) => {
   const {control, handleSubmit, formState} = useForm();
   const errors = formState.errors;
   const onSubmit = (data: any) => muLogin.mutate({...data, DeviceType: 2});
-
   return (
     <BasicLayout isLoading={muLogin.isLoading}>
       <SafeAreaView className="flex-1">
@@ -64,7 +68,7 @@ const SignIn = ({navigation}: any) => {
                 returnKeyType="next"
                 onSubmitEditing={() => passwordInputRef.current.focus()}
                 error={errors.Email}
-                rightIcon={<EmailIcon className="text-secondary" />}
+                rightIcon={<EmailIcon style={tw`text-secondary`} />}
               />
               {errors.Email && <Text className="text-orange-600 pt-0.5 text-[10px]">{t('invalidUsername')}</Text>}
             </View>
@@ -77,11 +81,11 @@ const SignIn = ({navigation}: any) => {
                 onSubmitEditing={handleSubmit(onSubmit)}
                 secureTextEntry={!showPassword}
                 control={control}
-                rightIcon={showPassword ? <EyeOffIcon className="text-secondary" /> : <EyeIcon className="text-secondary" />}
+                rightIcon={showPassword ? <EyeOffIcon style={tw`text-secondary`} /> : <EyeIcon style={tw`text-secondary`} />}
                 rightAction={() => setShowPassword(!showPassword)}
               />
             </View>
-            <TouchableOpacity className="items-end mt-4" onPress={() => navigation.navigate(FORGOT_PASSWORD)}>
+            <TouchableOpacity className="items-end mt-4" onPress={() => router.navigate(FORGOT_PASSWORD)}>
               <Text className="text-darkGreen">{t('forgotPassword')}</Text>
             </TouchableOpacity>
             <View className="items-center mt-8">
@@ -91,7 +95,7 @@ const SignIn = ({navigation}: any) => {
             </View>
             <View className="flex flex-row justify-center items-center">
               <Text className="text-black">{t('donAccount')}</Text>
-              <Pressable className="px-2 py-3" onPress={() => navigation.navigate(SIGN_UP)}>
+              <Pressable className="px-2 py-3" onPress={() => router.navigate(SIGN_UP)}>
                 <Text className="color-secondary font-semibold">{t('signUp')}</Text>
               </Pressable>
             </View>
