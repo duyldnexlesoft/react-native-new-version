@@ -6,7 +6,7 @@ import store from 'app/store/store';
 import {omitBy} from 'lodash';
 // import Alert from 'app/components/Alert';
 
-const execute = async (method: string, endpoint: string, body: object = {}, headers: any = {}) => {
+const execute = async (method: string, endpoint: string, body: object = {}, headers: any = {}) => { 
   const userStorage = await AsyncStorage.getItem(CURRENT_USER); 
   axios.defaults.baseURL = process.env.EXPO_PUBLIC_BASE_URL;
   const token = userStorage ? JSON.parse(userStorage).AccessToken : '';

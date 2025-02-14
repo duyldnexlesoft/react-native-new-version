@@ -4,7 +4,7 @@ import axios from 'axios';
 import {omitBy} from 'lodash';
 
 export const geocoding = (searchText: any, limit?: any, country?: any) => {
-  const params = omitBy({limit, country, access_token: process.env.MAPBOX_ACCESS_TOKEN}, (value: any) => !value);
+  const params = omitBy({limit, country, access_token: process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN}, (value: any) => !value);
   return axios.get(`${MAPBOX_URL}/${searchText}.json`, {params});
 };
 

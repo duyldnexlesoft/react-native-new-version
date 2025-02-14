@@ -44,7 +44,7 @@ export default function RootLayout() {
           }}
         >
           <ErrorBoundary>
-            <StripeProvider publishableKey={process.env.STRIPE_PUBLISHABLE_KEY}>
+            <StripeProvider publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY}>
               <Stack screenOptions={{ headerShown: false }} />
             </StripeProvider>
           </ErrorBoundary>
