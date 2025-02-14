@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 import Reactotron from 'reactotron-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Sentry from '@sentry/react-native';
+import * as Sentry from "@sentry/react-native";
 import '../global.css';
 import 'locales/i18next';
 import { useEffect } from 'react';
@@ -16,11 +16,10 @@ import { StripeProvider } from '@stripe/stripe-react-native';
 let deviceHeight = Dimensions.get('screen').height;
 let windowHeight = Dimensions.get('window').height;
 
-if (process.env.SENTRY_DSN) {
+if (process.env.EXPO_PUBLIC_SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
     tracesSampleRate: 1.0,
-    enableAppHangTracking: false,
   });
 }
 
